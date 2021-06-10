@@ -7,7 +7,7 @@ const InputForm = ({ handleAddUser }) => {
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        formState: { errors },
     } = useForm();
     const onSubmit = (user) => handleAddUser(user);
 
@@ -22,6 +22,9 @@ const InputForm = ({ handleAddUser }) => {
                             {...register("name", { required: true })}
                             placeholder="Enter Name"
                         />
+                        {errors.name && (
+                            <p className="text-danger semi-bold ms-2">This field is required</p>
+                        )}
                     </Form.Group>
                     <Form.Group as={Col} xs={4}>
                         <Form.Label className="semi-bold">Email</Form.Label>
@@ -30,6 +33,9 @@ const InputForm = ({ handleAddUser }) => {
                             {...register("email", { required: true })}
                             placeholder="Enter Email"
                         />
+                        {errors.email && (
+                            <p className="text-danger semi-bold ms-2">This field is required</p>
+                        )}
                     </Form.Group>
                     <Form.Group as={Col} xs={1}>
                         <Button type="submit">Add</Button>

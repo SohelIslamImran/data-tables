@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import InputForm from "../InputForm/InputForm";
 import UserTable from "../UserTable/UserTable";
 
@@ -7,8 +8,10 @@ const UserContainer = () => {
 
     const handleAddUser = (user) => {
         const isUserExist = users.some(({ email }) => email === user.email);
-        if (isUserExist) return console.log(isUserExist);
-        return setUsers([...users, user]);
+        if (isUserExist) return toast.error("User already exists with this email!");
+
+        setUsers([...users, user]);
+        return toast.success("Successfully Added");
     };
 
     const handleDeleteUser = (email) => {
